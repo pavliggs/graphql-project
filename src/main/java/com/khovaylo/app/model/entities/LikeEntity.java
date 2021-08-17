@@ -1,6 +1,5 @@
 package com.khovaylo.app.model.entities;
 
-import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

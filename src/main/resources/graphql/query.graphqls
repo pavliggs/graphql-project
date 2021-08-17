@@ -1,0 +1,27 @@
+schema {
+    query: Query
+}
+
+interface Base {
+    id: ID!
+}
+
+type User implements Base {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    age: Int!
+    posts: [Post!]!
+}
+
+type Post implements Base {
+    id: ID!
+    createdDate: String!
+    content: String!
+    owner: User!
+}
+
+type Query {
+    users: [User!]!
+    user(id: ID!): User
+}

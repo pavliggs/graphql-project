@@ -4,18 +4,34 @@ server:
       charset: UTF-8
       enabled: true
   port: 8888
+  http2:
+    enabled: true
 
 graphql:
-  spqr:
-    http:
-      enabled: true
-      endpoint: /graphql
-    gui:
-      enabled: true
-      page-title: GraphQL Playground
-      endpoint: /gui
-    relay:
-      connection-check-relaxed: true
+#  spqr:
+#    http:
+#      enabled: true
+#      endpoint: /graphql
+#    gui:
+#      enabled: true
+#      page-title: GraphQL Playground
+#      endpoint: /gui
+#    relay:
+#      connection-check-relaxed: true
+  annotations:
+    base-package: com.khovaylo.app
+  playground:
+    mapping: /playground
+    endpoint: /graphql
+    enabled: true
+    page-title: Playground
+  servlet:
+    enabled: true
+    mapping: /graphql
+    cors-enabled: true
+    exception-handlers-enabled: true
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+    async-mode-enabled: true
 
 spring:
   jpa:

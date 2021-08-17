@@ -18,6 +18,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>13</maven.compiler.source>
         <maven.compiler.target>13</maven.compiler.target>
+        <graphql.version>11.1.0</graphql.version>
+        <pmd.version>3.14.0</pmd.version>
     </properties>
 
     <dependencies>
@@ -58,10 +60,25 @@
             <artifactId>mybatis</artifactId>
             <version>3.5.4</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.leangen.graphql</groupId>-->
+<!--            <artifactId>graphql-spqr-spring-boot-starter</artifactId>-->
+<!--            <version>0.0.4</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>graphql-spring-boot-starter</artifactId>-->
+<!--            <version>${graphql.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>io.leangen.graphql</groupId>
-            <artifactId>graphql-spqr-spring-boot-starter</artifactId>
-            <version>0.0.4</version>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-kickstart-spring-boot-starter-graphql-annotations</artifactId>
+            <version>${graphql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>playground-spring-boot-starter</artifactId>
+            <version>${graphql.version}</version>
         </dependency>
     </dependencies>
 
@@ -71,6 +88,29 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd.version}</version>
+                <configuration>
+                    <failOnViolation>true</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+                    <skipEmptyReport>false</skipEmptyReport>
+                    <linkXRef>false</linkXRef>
+                    <rulesets>
+                        <ruleset>pmd-ruleset.xml</ruleset>
+                    </rulesets>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
